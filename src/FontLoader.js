@@ -15,7 +15,7 @@ const checkLoadedFonts = (family, fonts) => {
 		const weight = style.charAt(0);
 		const classification = style.charAt(3) || 'n';
 		const styleToCheck = classification + weight;
-		if (!(familyName + ' ' + styleToCheck in fonts) || (familyName + ' ' + styleToCheck in fonts && fonts[(familyName + ' ' + styleToCheck)].subset)) {
+		if (fonts && (!(familyName + ' ' + styleToCheck in fonts) || (familyName + ' ' + styleToCheck in fonts && fonts[(familyName + ' ' + styleToCheck)].subset))) {
 			stylesToLoad.push(styles[index]);
 		}
 	});
@@ -46,7 +46,7 @@ export default class FontLoader extends Component {
 	}
 
 	loadFonts(fontProvider, stylesToLoad) {
-		const { fontIsLoaded, fontLoadFailed, typekitId, customUrls, timeout, text } = this.props;
+		const { onActive, onInactive, onLoading, fontIsLoading, fontIsLoaded, fontLoadFailed, typekitId, customUrls, timeout, text, debug } = this.props;
 		const WebFont = require('webfontloader');
 
 		WebFont.load({
@@ -56,10 +56,32 @@ export default class FontLoader extends Component {
 				urls: customUrls || {},
 				text
 			},
-			fontactive: (familyName, fvd) => fontIsLoaded(familyName, fvd, text),
-			fontinactive: (familyName, fvd) => fontLoadFailed(familyName, fvd),
+			loading: () => {
+				if (debug) console.info('…Loading WebFonts');
+				onLoading();
+			},
+			active: () => {
+				if (debug) console.info('WebFonts are Active!');
+				onActive();
+			},
+			inactive: () => {
+				if (debug) console.warn('WebFonts Failed to Load 😱');
+				onInactive();
+			},
+			fontloading: (familyName, fvd) => {
+				if (debug) console.info(familyName + ' ' + fvd + ' is Loading');
+				fontIsLoading();
+			},
+			fontactive: (familyName, fvd) => {
+				if (debug) console.info(familyName + ' ' + fvd + ' is Active!');
+				fontIsLoaded(familyName, fvd, text);
+			},
+			fontinactive: (familyName, fvd) => {
+				if (debug) console.warn(familyName + ' ' + fvd + ' Failed to Load');
+				fontLoadFailed(familyName, fvd);
+			},
 			classes: false,
-			timeout: timeout || 3000
+			timeout: timeout
 		});
 	}
 
@@ -70,12 +92,28 @@ export default class FontLoader extends Component {
 
 FontLoader.propTypes = {
 	customUrls: PropTypes.array,
+	debug: PropTypes.bool,
 	fontFamilies: PropTypes.array,
 	fontIsLoaded: PropTypes.func,
+	fontIsLoading: PropTypes.func,
 	fontLoadFailed: PropTypes.func,
 	fontProvider: PropTypes.string,
 	fonts: PropTypes.object,
+	onActive: PropTypes.func,
+	onInactive: PropTypes.func,
+	onLoading: PropTypes.func,
 	text: PropTypes.string,
 	timeout: PropTypes.number,
 	typekitId: PropTypes.string,
+};
+
+FontLoader.defaultProps = {
+	fonts: {},
+	fontIsLoaded: () => {},
+	fontIsLoading: () => {},
+	fontLoadFailed: () => {},
+	onActive: () => {},
+	onInactive: () => {},
+	onLoading: () => {},
+	timeout: 3000,
 };

@@ -6,7 +6,7 @@ var App = React.createClass({
 	render () {
 		return (
 			<div>
-				<FontLoader />
+				<FontLoader fontProvider="google" fontFamilies={['Nixie One:400']} debug/>
 			</div>
 		);
 	}
