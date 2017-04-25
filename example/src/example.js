@@ -6,7 +6,14 @@ var App = React.createClass({
 	render () {
 		return (
 			<div>
-				<FontLoader fontProvider="google" fontFamilies={['Nixie One:400']} debug/>
+				<FontLoader
+					fontProvider="google"
+					fontFamilies={['Source Code Pro:400']}
+					onActive={() => {
+						document.body.classList.add('webfonts-loaded');
+					}}
+					debug
+				/>
 			</div>
 		);
 	}
