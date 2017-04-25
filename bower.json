@@ -1,0 +1,29 @@
+{
+  "name": "react-font-loader",
+  "version": "0.0.0",
+  "description": "FontLoader",
+  "main": "dist/react-font-loader.min.js",
+  "homepage": "https://github.com/jtini/react-font-loader",
+  "authors": [
+    "Barbershop I/O"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
