@@ -1,7 +1,11 @@
 # FontLoader
 
-__COMPONENT DESCRIPTION GOES HERE__
+It is cooool to load fonts on the web.
 
+
+***
+
+## Original README
 
 ## Demo & Examples
 
@@ -58,4 +62,3 @@ To build, watch and serve the examples (which will also watch the component sour
 __PUT LICENSE HERE__
 
 Copyright (c) 2017 Barbershop I/O.
-
