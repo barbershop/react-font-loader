@@ -1,15 +1,10 @@
 # FontLoader
 
-It is cooool to load fonts on the web.
-
+React Component wrapper for [webfontloader](https://github.com/typekit/webfontloader)
 
 ***
 
-## Original README
-
 ## Demo & Examples
-
-Live demo: [jtini.github.io/react-font-loader](http://jtini.github.io/react-font-loader/)
 
 To build the examples locally, run:
 
@@ -34,21 +29,31 @@ npm install react-font-loader --save
 
 ## Usage
 
-__EXPLAIN USAGE HERE__
+Choose a provider and font families to load.
 
 ```
 var FontLoader = require('react-font-loader');
 
-<FontLoader>Example</FontLoader>
+<FontLoader fontProvider="google" fontFamilies={['Source Code Pro:400']}>Example</FontLoader>
 ```
 
 ### Properties
 
-* __DOCUMENT PROPERTIES HERE__
+* fontProvider: See [webfontloader](https://github.com/typekit/webfontloader) for web font provider examples
+* fontFamilies: The font families to be loaded
+* text (optional): A subset of text to load (only available for Google Fonts)
+* typekitId: Required for Typekit fonts
+* callbacks
+	* onLoading: Called when all `fontFamilies` have been requested
+	* onActive: Called when all of the `fontFamilies` have successfully downloaded
+	* onInactive: Called when the browser does not support linked fonts, or all of the `fontFamilies` have failed to download
+	* fontIsActive: Called when a specific font has downloaded
+	* fontIsLoading: Called when a specific font is loading
+	* fontLoadFailed: Called when an individual font can't be loaded
 
 ### Notes
 
-__ADDITIONAL USAGE NOTES__
+WIP
 
 
 ## Development (`src`, `lib` and the build process)
@@ -59,6 +64,6 @@ To build, watch and serve the examples (which will also watch the component sour
 
 ## License
 
-__PUT LICENSE HERE__
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Copyright (c) 2017 Barbershop I/O.
