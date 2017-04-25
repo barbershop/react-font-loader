@@ -1,6 +1,6 @@
 {
   "name": "react-font-loader",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React component wrapper for the webfontloader",
   "main": "lib/FontLoader.js",
   "author": "Barbershop I/O",
