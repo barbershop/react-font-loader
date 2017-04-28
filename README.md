@@ -36,7 +36,8 @@ There are 2 required props:
 * `fontFamilies` Array of font styles to load
 
 For Example:
-```
+
+```jsx
 <FontLoader
 	fontProvider="google"
 	fontFamilies={['Source Code Pro:400']}
@@ -58,7 +59,7 @@ A few props can control the behavior of a `FontLoader`
 
 Fonts loaded from Google can be automatically subsetted by passing a `text` prop.
 
-```
+```jsx
 <FontLoader
 	fontProvider="google"
 	fontFamilies={[
@@ -72,7 +73,7 @@ Fonts loaded from Google can be automatically subsetted by passing a `text` prop
 
 Typekit needs a `typekitId` prop to load the fonts.
 
-```
+```jsx
 <FontLoader
 	fontProvider="typekit"
 	fontFamilies={[…]}
@@ -84,7 +85,7 @@ Typekit needs a `typekitId` prop to load the fonts.
 
 To load Adobe Edge Web Fonts, pass a `typekitAPI` prop with the Edge Fonts URL.
 
-```
+```jsx
 <FontLoader
 	fontProvider="typekit"
 	fontFamilies={[…]}
@@ -97,7 +98,7 @@ To load Adobe Edge Web Fonts, pass a `typekitAPI` prop with the Edge Fonts URL.
 
 To load fonts from Fontdeck, pass a `fontdeckId` prop that corresponds to the ID of your site.
 
-```
+```jsx
 <FontLoader
 	fontProvider="fontdeck"
 	fontFamilies={[…]}
@@ -112,7 +113,7 @@ There are several additional props for Fonts.com:
 * `monotypeVersion` Optional for cache-busting
 * `monotypeLoadAllFonts` Optional boolean
 
-```
+```jsx
 <FontLoader
 	fontProvider="monotype"
 	fontFamilies={[…]}
@@ -126,7 +127,7 @@ There are several additional props for Fonts.com:
 
 Custom fonts include the option to pass a `customUrls` array of stylesheets.
 
-```
+```jsx
 <FontLoader
 	fontProvider="custom"
 	fontFamilies={[…]}
