@@ -148,20 +148,6 @@ The following optional props can be passed to leverage the Web Font Loader event
 	* `fontIsLoaded`
 	* `fontLoadFailed`
 
-### Properties
-
-* fontProvider: See [webfontloader](https://github.com/typekit/webfontloader) for web font provider examples
-* fontFamilies: The font families to be loaded
-* text (optional): A subset of text to load (only available for Google Fonts)
-* typekitId: Required for Typekit fonts
-* callbacks
-	* onLoading: Called when all `fontFamilies` have been requested
-	* onActive: Called when all of the `fontFamilies` have successfully downloaded
-	* onInactive: Called when the browser does not support linked fonts, or all of the `fontFamilies` have failed to download
-	* fontIsActive: Called when a specific font has downloaded
-	* fontIsLoading: Called when a specific font is loading
-	* fontLoadFailed: Called when an individual font can't be loaded
-
 ### Notes
 
 * [Web Font Loader Documentation](https://github.com/typekit/webfontloader)
