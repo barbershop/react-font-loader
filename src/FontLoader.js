@@ -46,13 +46,34 @@ export default class FontLoader extends Component {
 	}
 
 	loadFonts(fontProvider, stylesToLoad) {
-		const { onActive, onInactive, onLoading, fontIsLoading, fontIsLoaded, fontLoadFailed, typekitId, customUrls, timeout, text, debug } = this.props;
+		const {
+			onActive,
+			onInactive,
+			onLoading,
+			fontIsLoading,
+			fontIsLoaded,
+			fontLoadFailed,
+			typekitId,
+			typekitAPI,
+			fontdeckId,
+			monotypeProjectId,
+			monotypeVersion,
+			monotypeLoadAllFonts,
+			customUrls,
+			timeout,
+			text,
+			debug,
+			classes } = this.props;
 		const WebFont = require('webfontloader');
 
 		WebFont.load({
 			[fontProvider]: {
 				families: stylesToLoad,
-				id: typekitId,
+				id: typekitId || fontdeckId,
+				projectId: monotypeProjectId,
+				version: monotypeVersion,
+				loadAllFonts: monotypeLoadAllFonts,
+				api: typekitApi || '',
 				urls: customUrls || {},
 				text
 			},
@@ -80,7 +101,7 @@ export default class FontLoader extends Component {
 				if (debug) console.warn(familyName + ' ' + fvd + ' Failed to Load');
 				fontLoadFailed(familyName, fvd);
 			},
-			classes: false,
+			classes,
 			timeout: timeout
 		});
 	}
@@ -91,20 +112,35 @@ export default class FontLoader extends Component {
 }
 
 FontLoader.propTypes = {
+	fontProvider: PropTypes.oneOf([
+		'google',
+		'typekit',
+		'fontdeck',
+		'monotype',
+		'custom',
+	]).isRequired,
+	fontFamilies: PropTypes.array.isRequired,
+
+	text: PropTypes.string,
+	typekitId: PropTypes.string,
+	typekitAPI: PropTypes.string,
+	fontdeckId: PropTypes.string,
+	monotypeProjectId: PropTypes.string,
+	monotypeVersion: PropTypes.string,
+	monotypeLoadAllFonts: PropTypes.bool,
 	customUrls: PropTypes.array,
-	debug: PropTypes.bool,
-	fontFamilies: PropTypes.array,
-	fontIsLoaded: PropTypes.func,
-	fontIsLoading: PropTypes.func,
-	fontLoadFailed: PropTypes.func,
-	fontProvider: PropTypes.string,
-	fonts: PropTypes.object,
+
 	onActive: PropTypes.func,
 	onInactive: PropTypes.func,
 	onLoading: PropTypes.func,
-	text: PropTypes.string,
+	fontIsLoaded: PropTypes.func,
+	fontIsLoading: PropTypes.func,
+	fontLoadFailed: PropTypes.func,
+
+	fonts: PropTypes.object,
 	timeout: PropTypes.number,
-	typekitId: PropTypes.string,
+	classes: PropTypes.bool,
+	debug: PropTypes.bool,
 };
 
 FontLoader.defaultProps = {
@@ -116,4 +152,5 @@ FontLoader.defaultProps = {
 	onInactive: () => {},
 	onLoading: () => {},
 	timeout: 3000,
+	classes: true,
 };
