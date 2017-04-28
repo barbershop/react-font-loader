@@ -152,5 +152,5 @@ FontLoader.defaultProps = {
 	onInactive: () => {},
 	onLoading: () => {},
 	timeout: 3000,
-	classes: true,
+	classes: false,
 };
