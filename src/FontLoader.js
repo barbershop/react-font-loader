@@ -73,7 +73,7 @@ export default class FontLoader extends Component {
 				projectId: monotypeProjectId,
 				version: monotypeVersion,
 				loadAllFonts: monotypeLoadAllFonts,
-				api: typekitApi || '',
+				api: typekitAPI || '',
 				urls: customUrls || {},
 				text
 			},
